@@ -11,7 +11,6 @@ app.use(bodyParser.json())
 
 // Hook para checagem de Token de autorizacao.
 app.use(function (req, res, next) {
-
     if (req.headers && req.headers.authorization &&
         req.headers.authorization.split(' ')[0] === 'Bearer') {
 
@@ -20,6 +19,9 @@ app.use(function (req, res, next) {
                 if (err) {
                     // Token authentication error.
                     req.user = undefined;
+                    res.status(422).send(
+                       { mensagem : 'Sessão Inválilda!' } 
+                    )
                 } else {
                     req.user = decode;
                 }

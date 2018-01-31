@@ -136,7 +136,6 @@ const logarUsuario = async ({ Usuario }, req, res) => {
 }
 
 const buscarUsuario = async ({ Usuario }, req, res) => {
-
   // Caso o Token do JWT seja valido!
   if (req.user) {
       // buscando o usuario.
@@ -151,6 +150,10 @@ const buscarUsuario = async ({ Usuario }, req, res) => {
         mensagem: 'Não autorizado!'
       })
       }
+  }else{
+      res.status(403).send({
+        mensagem: 'Não autorizado!'
+      })
   }
 }
 
